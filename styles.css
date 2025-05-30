@@ -80,3 +80,14 @@ footer {
     background: #35424a;
     color: white;
 }
+header h1 {
+    animation: rgbGlow 3s ease infinite;
+    text-shadow: 0 0 10px currentColor;
+}
+
+@keyframes rgbGlow {
+    0% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
+    33% { color: #00ff00; text-shadow: 0 0 10px #00ff00; }
+    66% { color: #0000ff; text-shadow: 0 0 10px #0000ff; }
+    100% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
+}

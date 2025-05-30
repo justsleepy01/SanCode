@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Sections
     const aboutSection = document.getElementById('about');
     const projectsSection = document.getElementById('projects');
-    const contactSection = document.getElementById('contact');
     
     // Interactive buttons
     const funFactBtn = document.getElementById('funFactBtn');
@@ -65,5 +64,32 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('mouseout', function() {
             this.style.boxShadow = 'none';
         });
+    });
+});document.addEventListener('DOMContentLoaded', function() {
+    const overlay = document.querySelector('.global-overlay');
+    const moreBtn = document.getElementById('more-transparent');
+    const lessBtn = document.getElementById('less-transparent');
+    
+    // Set initial opacity (50%)
+    let currentOpacity = 0.5;
+    overlay.style.backgroundColor = `rgba(0, 0, 0, ${currentOpacity})`;
+    
+    // Increase transparency
+    moreBtn.addEventListener('click', function() {
+        currentOpacity = Math.min(currentOpacity + 0.1, 0.9);
+        overlay.style.backgroundColor = `rgba(0, 0, 0, ${currentOpacity})`;
+    });
+    
+    // Decrease transparency
+    lessBtn.addEventListener('click', function() {
+        currentOpacity = Math.max(currentOpacity - 0.1, 0.1);
+        overlay.style.backgroundColor = `rgba(0, 0, 0, ${currentOpacity})`;
+    });
+    
+    // Dynamic opacity on scroll
+    window.addEventListener('scroll', function() {
+        const scrollPosition = window.scrollY;
+        const newOpacity = 0.5 + (scrollPosition / 2000);
+        overlay.style.backgroundColor = `rgba(0, 0, 0, ${Math.min(newOpacity, 0.8)})`;
     });
 });
