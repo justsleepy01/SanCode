@@ -3,40 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Personal Website</title>
+    <title>SanCode | Blue Theme</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
-    <header>
-        <h1>SanCode</h1>
-        <nav>
-            <button id="aboutBtn">About Me</button>
-            <button id="projectsBtn">Projects</button>
-        </nav>
-    </header>
+<body class="light-mode">
+    <div class="page-wrapper">
+        <!-- Dark Mode Toggle -->
+        <div class="theme-switch-wrapper">
+            <span class="theme-switch-label">Light Mode</span>
+            <label class="theme-switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+            <span class="theme-switch-label">Dark Mode</span>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="content-card">
+            <header class="rounded-header">
+                <h1 class="blue-heading"><i class="fas fa-code"></i> SanCode</h1>
+            </header>
 
-    <main>
-        <section id="about" class="hidden">
-            <h2>About Me</h2> 
-            <p>Someone with coding experience.</p>
-            <img src="images/profile.jpg" alt="Doesn't work" class="profile-img">
-           
-        </section>
+            <main>
+                <section id="about" class="rounded-section">
+                    <h2><i class="fas fa-user"></i> About Me</h2>
+                    <div class="about-content">
+                        <img src="images/profile.jpg" alt="Profile" class="profile-img">
+                        <div class="about-text">
+                        <h3>justsleepy01</h3>
+                            <p>Welcome to my website!</p>
+                            <div class="skills">
+                                <span class="skill-tag">HTML/CSS</span>
+                                <span class="skill-tag">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-        <section id="projects" class="hidden">
-            <h2>My Projects</h2>
-            <div class="project">
-                <img src="images/" alt="All projects on Github">
-                <h3>Project Title</h3>
-                <p>Project description...</p>
-                <button class="interactive-btn">View Details</button>
-            </div>
-        </section>
-    </main>
+                <section id="projects" class="rounded-section">
+                    <h2><i class="fas fa-project-diagram"></i> My Projects</h2>
+                    <div class="project-grid">
+                        <div class="project-card">
+                            <div class="project-img-container">
+                                <img src="images/monkey.gif" alt="Project 1">
+                            </div>
+                            <h3>This website!</h3>
+                            <a href="#" class="project-link">View Project →</a>
+                            </div>
+                </section>
 
-    <footer>
-        <p>&copy;<b>2025 SanCode™</b></p>
-    </footer>
+            <footer class="rounded-footer">
+                <div class="footer-content">
+                    <p>© 2025 SanCode</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

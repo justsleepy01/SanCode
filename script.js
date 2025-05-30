@@ -1,98 +1,70 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Navigation buttons
-    const aboutBtn = document.getElementById('aboutBtn');
-    const projectsBtn = document.getElementById('projectsBtn');
-    const contactBtn = document.getElementById('contactBtn');
+    // Dark Mode Toggle
+    const themeSwitch = document.querySelector('.theme-switch input');
+    const body = document.body;
     
-    // Sections
-    const aboutSection = document.getElementById('about');
-    const projectsSection = document.getElementById('projects');
+    // Check for saved theme preference
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) {
+        body.classList.add(currentTheme);
+        themeSwitch.checked = currentTheme === 'dark-mode';
+        updateThemeLabel();
+    }
     
-    // Interactive buttons
-    const funFactBtn = document.getElementById('funFactBtn');
-    const funFact = document.getElementById('funFact');
-    const emailBtn = document.getElementById('emailBtn');
-    const email = document.getElementById('email');
-    
-    // Navigation functionality
-    aboutBtn.addEventListener('click', function() {
-        aboutSection.classList.remove('hidden');
-        projectsSection.classList.add('hidden');
-        contactSection.classList.add('hidden');
-    });
-    
-    projectsBtn.addEventListener('click', function() {
-        aboutSection.classList.add('hidden');
-        projectsSection.classList.remove('hidden');
-        contactSection.classList.add('hidden');
-    });
-    
-    contactBtn.addEventListener('click', function() {
-        aboutSection.classList.add('hidden');
-        projectsSection.classList.add('hidden');
-        contactSection.classList.remove('hidden');
-    });
-    
-    // Interactive elements
-    funFactBtn.addEventListener('click', function() {
-        if (funFact.classList.contains('hidden')) {
-            funFact.classList.remove('hidden');
-            funFactBtn.textContent = 'Hide Fun Fact';
+    // Theme switch event
+    themeSwitch.addEventListener('change', function() {
+        if (this.checked) {
+            body.classList.remove('light-mode');
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark-mode');
         } else {
-            funFact.classList.add('hidden');
-            funFactBtn.textContent = 'Show Fun Fact';
+            body.classList.remove('dark-mode');
+            body.classList.add('light-mode');
+            localStorage.setItem('theme', 'light-mode');
         }
+        updateThemeLabel();
     });
     
-    emailBtn.addEventListener('click', function() {
-        if (email.classList.contains('hidden')) {
-            email.classList.remove('hidden');
-            emailBtn.textContent = 'Hide Email';
-        } else {
-            email.classList.add('hidden');
-            emailBtn.textContent = 'Reveal Email';
-        }
-    });
-    
-    // Add animation to interactive buttons
-    const interactiveButtons = document.querySelectorAll('.interactive-btn');
-    interactiveButtons.forEach(button => {
-        button.addEventListener('mouseover', function() {
-            this.style.boxShadow = '0 5px 15px rgba(0,0,0,0.3)';
+    function updateThemeLabel() {
+        const labels = document.querySelectorAll('.theme-switch-label');
+        labels.forEach(label => {
+            label.textContent = body.classList.contains('dark-mode') ? 'Dark Mode' : 'Light Mode';
         });
-        
-        button.addEventListener('mouseout', function() {
-            this.style.boxShadow = 'none';
+    }
+    
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
         });
     });
-});document.addEventListener('DOMContentLoaded', function() {
-    const overlay = document.querySelector('.global-overlay');
-    const moreBtn = document.getElementById('more-transparent');
-    const lessBtn = document.getElementById('less-transparent');
     
-    // Set initial opacity (50%)
-    let currentOpacity = 0.5;
-    overlay.style.backgroundColor = `rgba(0, 0, 0, ${currentOpacity})`;
-    
-    // Increase transparency
-    moreBtn.addEventListener('click', function() {
-        currentOpacity = Math.min(currentOpacity + 0.1, 0.9);
-        overlay.style.backgroundColor = `rgba(0, 0, 0, ${currentOpacity})`;
+    // Project card hover effects
+    const projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px)';
+        });
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+        });
     });
     
-    // Decrease transparency
-    lessBtn.addEventListener('click', function() {
-        currentOpacity = Math.max(currentOpacity - 0.1, 0.1);
-        overlay.style.backgroundColor = `rgba(0, 0, 0, ${currentOpacity})`;
-    });
-    
-    // Dynamic opacity on scroll
-    window.addEventListener('scroll', function() {
-        const scrollPosition = window.scrollY;
-        const newOpacity = 0.5 + (scrollPosition / 2000);
-        overlay.style.backgroundColor = `rgba(0, 0, 0, ${Math.min(newOpacity, 0.8)})`;
-    });
+    // Form submission
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically send the form data to a server
+            alert('Thank you for your message!');
+            this.reset();
+        });
+    }
 });
+// Add this to your existing JavaScript
 function rgbHeaderFallback() {
     const header = document.querySelector('header h1');
     if (!header) return;
