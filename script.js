@@ -93,3 +93,23 @@ document.addEventListener('DOMContentLoaded', function() {
         overlay.style.backgroundColor = `rgba(0, 0, 0, ${Math.min(newOpacity, 0.8)})`;
     });
 });
+function rgbHeaderFallback() {
+    const header = document.querySelector('header h1');
+    if (!header) return;
+    
+    // Check if animation is working
+    const animationCheck = window.getComputedStyle(header).animationName;
+    
+    if (animationCheck === 'none' || !animationCheck) {
+        // CSS animation failed - use JS fallback
+        let hue = 0;
+        function updateColor() {
+            hue = (hue + 1) % 360;
+            header.style.color = `hsl(${hue}, 100%, 50%)`;
+            requestAnimationFrame(updateColor);
+        }
+        updateColor();
+    }
+}
+
+document.addEventListener('DOMContentLoaded', rgbHeaderFallback);
