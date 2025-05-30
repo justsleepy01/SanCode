@@ -80,14 +80,22 @@ footer {
     background: #35424a;
     color: white;
 }
+/* Replace your existing header h1 styles with this */
 header h1 {
-    animation: rgbGlow 3s ease infinite;
-    text-shadow: 0 0 10px currentColor;
+    background: linear-gradient(90deg, 
+        #ff0000, #ff9900, #33cc33, 
+        #0099ff, #6633cc, #cc0066, #ff0000);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 400% 400%;
+    animation: rgbHeader 8s linear infinite;
+    text-align: center;
+    padding: 20px 0;
+    display: inline-block; /* Needed for gradient text */
 }
 
-@keyframes rgbGlow {
-    0% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
-    33% { color: #00ff00; text-shadow: 0 0 10px #00ff00; }
-    66% { color: #0000ff; text-shadow: 0 0 10px #0000ff; }
-    100% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
+@keyframes rgbHeader {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
 }
