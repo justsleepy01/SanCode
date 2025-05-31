@@ -1,6 +1,4 @@
-/* Base Blue Theme Variables */
 :root {
-    /* Light Mode Colors */
     --primary-light: #1e88e5;
     --primary-dark: #1565c0;
     --secondary-light: #64b5f6;
@@ -19,7 +17,6 @@
     --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* Dark Mode Colors */
 .dark-mode {
     --primary: var(--primary-light);
     --secondary: var(--secondary-light);
@@ -30,7 +27,6 @@
     --shadow: var(--shadow-dark);
 }
 
-/* Light Mode Colors */
 .light-mode {
     --primary: var(--primary-dark);
     --secondary: var(--secondary-dark);
@@ -41,7 +37,6 @@
     --shadow: var(--shadow-light);
 }
 
-/* Base Styles */
 body {
     margin: 0;
     padding: 0;
@@ -58,8 +53,6 @@ body {
     align-items: center;
     padding: 2rem;
 }
-
-/* Theme Switch */
 .theme-switch-wrapper {
     position: fixed;
     top: 20px;
@@ -120,7 +113,6 @@ input:checked + .slider:before {
     transform: translateX(30px);
 }
 
-/* Content Card */
 .content-card {
     width: 100%;
     max-width: 1200px;
@@ -131,7 +123,6 @@ input:checked + .slider:before {
     transition: var(--transition);
 }
 
-/* Header */
 .rounded-header {
     padding: 2rem;
     text-align: center;
@@ -147,7 +138,7 @@ input:checked + .slider:before {
     background-size: 400% 400%;
     animation: rgbHeader 8s linear infinite;
     padding: 20px 0;
-    display: inline-block; /* Needed for gradient text */
+    display: inline-block;
 }
 
 @keyframes rgbHeader {
@@ -161,7 +152,7 @@ input:checked + .slider:before {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Navigation */
+
 .nav-btn {
     display: inline-block;
     padding: 0.5rem 1.5rem;
@@ -178,7 +169,7 @@ input:checked + .slider:before {
     transform: translateY(-2px);
 }
 
-/* Sections */
+
 .rounded-section {
     padding: 2rem;
     margin: 1rem;
@@ -193,7 +184,6 @@ input:checked + .slider:before {
     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
 }
 
-/* About Section */
 .about-content {
     display: flex;
     align-items: center;
@@ -229,7 +219,6 @@ input:checked + .slider:before {
     font-size: 0.8rem;
 }
 
-/* Projects */
 .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -292,7 +281,6 @@ input:checked + .slider:before {
     transform: translateX(5px);
 }
 
-/* Contact Form */
 .contact-form {
     max-width: 600px;
     margin: 0 auto;
@@ -336,7 +324,7 @@ input:checked + .slider:before {
     transform: translateY(-2px);
 }
 
-/* Footer */
+
 .rounded-footer {
     padding: 1.5rem;
     text-align: center;
@@ -356,8 +344,6 @@ input:checked + .slider:before {
     color: var(--secondary-light);
     transform: translateY(-3px);
 }
-
-/* Responsive Design */
 @media (max-width: 768px) {
     .about-content {
         flex-direction: column;
@@ -378,4 +364,95 @@ input:checked + .slider:before {
         top: 10px;
         right: 10px;
     }
+}
+
+.tilt-card-container {
+  perspective: 1000px;
+  margin: 2rem auto;
+  max-width: 400px;
+}
+
+.tilt-card {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease, box-shadow 0.3s ease;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.tilt-card-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.tilt-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tilt-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  color: white;
+  transform: translateZ(30px);
+}
+
+.tilt-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.tilt-card p {
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.tilt-card-btn {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  background-color: var(--primary);
+  color: white;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.tilt-card-btn:hover {
+  background-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.dark-mode .tilt-card {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+.contact-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #1d4fd8;
+  color: white;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-link:hover {
+  background-color: #256bdb;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.contact-link i {
+  margin-right: 8px;
 }

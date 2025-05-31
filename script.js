@@ -1,9 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Dark Mode Toggle
     const themeSwitch = document.querySelector('.theme-switch input');
     const body = document.body;
     
-    // Check for saved theme preference
     const currentTheme = localStorage.getItem('theme');
     if (currentTheme) {
         body.classList.add(currentTheme);
@@ -11,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
         updateThemeLabel();
     }
     
-    // Theme switch event
     themeSwitch.addEventListener('change', function() {
         if (this.checked) {
             body.classList.remove('light-mode');
@@ -32,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Smooth scroll for navigation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -42,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Project card hover effects
     const projectCards = document.querySelectorAll('.project-card');
     projectCards.forEach(card => {
         card.addEventListener('mouseenter', function() {
@@ -52,28 +47,23 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.transform = '';
         });
     });
-    
-    // Form submission
+
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            // Here you would typically send the form data to a server
             alert('Thank you for your message!');
             this.reset();
         });
     }
 });
-// Add this to your existing JavaScript
 function rgbHeaderFallback() {
     const header = document.querySelector('header h1');
     if (!header) return;
-    
-    // Check if animation is working
+
     const animationCheck = window.getComputedStyle(header).animationName;
     
     if (animationCheck === 'none' || !animationCheck) {
-        // CSS animation failed - use JS fallback
         let hue = 0;
         function updateColor() {
             hue = (hue + 1) % 360;
@@ -85,3 +75,33 @@ function rgbHeaderFallback() {
 }
 
 document.addEventListener('DOMContentLoaded', rgbHeaderFallback);
+const tiltCard = document.querySelector('.tilt-card');
+if (tiltCard) {
+  tiltCard.addEventListener('mousemove', (e) => {
+    const cardWidth = tiltCard.offsetWidth;
+    const cardHeight = tiltCard.offsetHeight;
+    const centerX = tiltCard.offsetLeft + cardWidth/2;
+    const centerY = tiltCard.offsetTop + cardHeight/2;
+    const mouseX = e.clientX - centerX;
+    const mouseY = e.clientY - centerY;
+    
+    const rotateX = (mouseY / cardHeight * -10).toFixed(2);
+    const rotateY = (mouseX / cardWidth * 10).toFixed(2);
+    
+    tiltCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    tiltCard.querySelector('.tilt-card-image img').style.transform = 'scale(1.05)';
+  });
+  
+  tiltCard.addEventListener('mouseleave', () => {
+    tiltCard.style.transform = 'rotateX(0) rotateY(0)';
+    tiltCard.querySelector('.tilt-card-image img').style.transform = 'scale(1)';
+  });
+}
+document.querySelector('.contact-link').addEventListener('click', function(e) {
+  e.preventDefault();
+  setTimeout(() => {
+    window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+  }, 1500);
+  this.textContent = 'Preparing contact form...';
+  this.style.backgroundColor = '#4CAF50';
+});

@@ -9,7 +9,6 @@
 </head>
 <body class="light-mode">
     <div class="page-wrapper">
-        <!-- Dark Mode Toggle -->
         <div class="theme-switch-wrapper">
             <span class="theme-switch-label">Light Mode</span>
             <label class="theme-switch">
@@ -19,12 +18,10 @@
             <span class="theme-switch-label">Dark Mode</span>
         </div>
         
-        <!-- Main Content -->
         <div class="content-card">
             <header class="rounded-header">
                 <h1 class="blue-heading"><i class="fas fa-code"></i> SanCode</h1>
             </header>
-
             <main>
                 <section id="about" class="rounded-section">
                     <h2><i class="fas fa-user"></i> About Me</h2>
@@ -34,24 +31,182 @@
                         <h3>justsleepy01</h3>
                             <p>Welcome to my website!</p>
                             <div class="skills">
-                                <span class="skill-tag">HTML/CSS</span>
-                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag"><b></b>HTML/CSS</b></span>
+                                <span class="skill-tag"><b>JavaScript</b></span>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <section id="projects" class="rounded-section">
-                    <h2><i class="fas fa-project-diagram"></i> My Projects</h2>
+                <section id="Cool stuff" class="rounded-section">
+                    <h2><i class="fas fa-project-diagram"></i> Cool stuff</h2>
                     <div class="project-grid">
                         <div class="project-card">
                             <div class="project-img-container">
                                 <img src="images/monkey.gif" alt="Project 1">
                             </div>
                             <h3>This website!</h3>
-                            <a href="#" class="project-link">View Project →</a>
                             </div>
+                    <div class="tilt-card-container">
+        <div class="tilt-card">
+    <div class="Favorite Album">
+      <img src="images/gnx.png" alt="Project Example">
+    </div>
+    <div class="tilt-card-content">
+      <h3>Favorite Album</h3>
+      <p>GNX by Kendrick Lamar [22-11-2024]</p>
+    </div>
+  </div>
+</div>
+
                 </section>
+                <div class="coin-container">
+  <div class="coin" id="coin">
+    <div class="heads">HEADS</div>
+    <div class="tails">TAILS</div>
+  </div>
+  <button id="flip-btn">Flip Coin (99% Heads)</button>
+  <p id="result"></p>
+  <p id="stats">Heads: 0 | Tails: 0</p>
+</div>
+
+<style>
+  .coin-container {
+    text-align: center;
+    margin: 30px auto;
+    max-width: 300px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .coin {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    margin: 0 auto 20px;
+    transform-style: preserve-3d;
+    transition: transform 2s cubic-bezier(0.4, 2.5, 0.6, 0.5);
+  }
+  
+  .heads, .tails {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  .heads {
+    background: gold;
+    border: 5px solid #daa520;
+    color: #333;
+  }
+  
+  .tails {
+    background: silver;
+    border: 5px solid #999;
+    color: #333;
+    transform: rotateY(180deg);
+  }
+  
+  #flip-btn {
+    padding: 12px 24px;
+    background: #4361ee;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+    margin-bottom: 20px;
+  }
+  
+  #flip-btn:hover {
+    background: #3a56d4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  #flip-btn:active {
+    transform: translateY(0);
+  }
+  
+  #result {
+    font-size: 20px;
+    font-weight: bold;
+    min-height: 30px;
+  }
+  
+  #stats {
+    color: #666;
+    font-style: italic;
+  }
+  
+  @keyframes celebrate {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+  
+  .celebrate {
+    animation: celebrate 0.5s 2;
+  }
+</style>
+
+<script>
+  let headsCount = 0;
+  let tailsCount = 0;
+  
+  document.getElementById('flip-btn').addEventListener('click', function() {
+    const coin = document.getElementById('coin');
+    const result = document.getElementById('result');
+    const stats = document.getElementById('stats');
+    const btn = this;
+    
+
+    btn.disabled = true;
+    btn.textContent = "Flipping...";
+    
+    coin.style.transform = 'rotateY(0)';
+    result.textContent = "";
+    
+    const isTails = Math.random() < 0.01;
+    const finalRotation = isTails ? 180 : 0;
+    const rotations = 5 + Math.floor(Math.random() * 3);
+    
+    const totalRotation = 360 * rotations + finalRotation;
+    
+    setTimeout(() => {
+      coin.style.transform = `rotateY(${totalRotation}deg)`;
+      
+      setTimeout(() => {
+        if (isTails) {
+          result.textContent = "TAILS! (1% chance!)";
+          result.style.color = "#FF5252";
+          tailsCount++;
+          coin.classList.add('celebrate');
+        } else {
+          result.textContent = "Heads! (As expected)";
+          result.style.color = "#4CAF50";
+          headsCount++;
+        }
+        
+        stats.textContent = `Heads: ${headsCount} | Tails: ${tailsCount}`;
+        btn.disabled = false;
+        btn.textContent = "Flip Again (99% Heads)";
+        
+        setTimeout(() => {
+          coin.classList.remove('celebrate');
+        }, 1000);
+      }, 2000);
+    }, 50);
+  });
+</script>
 
             <footer class="rounded-footer">
                 <div class="footer-content">
@@ -66,4 +221,10 @@
 
     <script src="script.js"></script>
 </body>
+<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
+   target="_blank" 
+   class="contact-link" 
+   onclick="alert('Redirecting to contact page...')">
+   <i class="fas fa-envelope"></i> Contact Me
+</a>
 </html>
